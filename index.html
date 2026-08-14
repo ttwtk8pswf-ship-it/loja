@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Loja Online Grutur - Produtos Tramontina e Cosméticos INUKA em Angola">
+    <title>Loja Grutur | Tramontina & INUKA</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Poppins', sans-serif; background: #f8f9fa; color: #333; }
+
+        /* ===== HEADER ===== */
+        .header {
+            background: #1b4332;
+            padding: 0 30px;
+            position: sticky; top: 0; z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        .nav-wrapper {
+            max-width: 1200px; margin: 0 auto;
+            display: flex; align-items: center;
+            justify-content: space-between; height: 68px;
+        }
+        .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+        .logo-icon {
+            width: 42px; height: 42px; background: #40916c;
+            border-radius: 50%; display: flex; align-items: center;
+            justify-content: center; font-size: 20px;
+        }
+        .logo-text { color: #fff; font-family: 'Montserrat', sans-serif; }
+        .logo-text strong { display: block; font-size: 16px; font-weight: 700; }
+        .logo-text span { display: block; font-size: 10px; color: #95d5b2; font-weight: 400; }
+        .nav-links { display: flex; gap: 6px; align-items: center; }
+        .nav-link {
+            color: #b7e4c7; font-size: 13px; text-decoration: none;
+            padding: 8px 14px; border-radius: 8px; transition: all 0.2s;
+            font-weight: 500;
+        }
+        .nav-link:hover { background: rgba(255,255,255,0.1); color: #fff; }
+        .nav-link.loja-btn {
+            background: #fff; color: #1b4332; font-weight: 700;
+            padding: 8px 16px; border-radius: 20px;
+        }
+        .nav-link.loja-btn:hover { background: #d8f3dc; }
+        .nav-wa {
+            background: #25D366; color: #fff; border: none;
+            padding: 9px 16px; border-radius: 20px; font-size: 13px;
+            font-weight: 600; cursor: pointer; text-decoration: none;
+            display: flex; align-items: center; gap: 6px;
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            background: linear-gradient(135deg, #081c15 0%, #1b4332 40%, #2d6a4f 70%, #40916c 100%);
+            padding: 72px 30px;
+            text-align: center; color: #fff;
+            position: relative; overflow: hidden;
+        }
+        .hero::before {
+            content: '🌿'; font-size: 300px; opacity: 0.04;
+            position: absolute; top: -50px; right: -50px; line-height: 1;
+        }
+        .hero-badge {
+            display: inline-block; background: rgba(255,255,255,0.15);
+            border: 1px solid rgba(255,255,255,0.3);
+            padding: 6px 18px; border-radius: 20px; font-size: 12px;
+            color: #95d5b2; margin-bottom: 20px; font-weight: 500;
+        }
+        .hero h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 38px; font-weight: 700; margin-bottom: 14px;
+            line-height: 1.2;
+        }
+        .hero h1 span { color: #95d5b2; }
+        .hero p { font-size: 15px; color: #b7e4c7; margin-bottom: 32px; max-width: 520px; margin-left: auto; margin-right: auto; }
+        .hero-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+        .hero-btn {
+            padding: 13px 28px; border-radius: 30px; font-size: 14px;
+            font-weight: 600; cursor: pointer; border: none;
+            transition: all 0.25s; font-family: 'Poppins', sans-serif;
+            text-decoration: none; display: inline-block;
+        }
+        .hero-btn.primary { background: #fff; color: #1b4332; }
+        .hero-btn.secondary { background: transparent; color: #fff; border: 2px solid #95d5b2; }
+        .hero-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.25); }
+
+        /* ===== FILTROS ===== */
+        .filtros-bar {
+            background: #fff; padding: 18px 30px;
+            border-bottom: 2px solid #e9ecef;
+            display: flex; gap: 10px; justify-content: center;
+            flex-wrap: wrap; position: sticky; top: 68px; z-index: 99;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+        .filtro {
+            padding: 10px 22px; border-radius: 25px; font-size: 13px;
+            font-weight: 600; cursor: pointer; border: 2px solid #dee2e6;
+            background: #fff; color: #555; transition: all 0.2s;
+            font-family: 'Poppins', sans-serif;
+        }
+        .filtro.active, .filtro:hover {
+            background: #1b4332; color: #fff; border-color: #1b4332;
+        }
+
+        /* ===== SECÇÕES ===== */
+        .secao { padding: 52px 30px; max-width: 1200px; margin: 0 auto; }
+        .secao-header { display: flex; align-items: center; gap: 18px; margin-bottom: 32px; }
+        .secao-icon {
+            width: 54px; height: 54px; border-radius: 16px;
+            display: flex; align-items: center; justify-content: center; font-size: 26px;
+        }
+        .secao-icon.tram { background: #d8f3dc; }
+        .secao-icon.inuka { background: #f3d8f5; }
+        .secao-titulo { font-family: 'Montserrat', sans-serif; font-size: 24px; font-weight: 700; color: #1b4332; }
+        .secao-sub { font-size: 13px; color: #6c757d; margin-top: 3px; }
+        .secao-divider { height: 3px; width: 60px; background: #40916c; border-radius: 2px; margin-top: 6px; }
+
+        /* ===== GRID PRODUTOS ===== */
+        .produtos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        /* ===== CARD PRODUTO ===== */
+        .card {
+            background: #fff; border-radius: 16px; overflow: hidden;
+            border: 1px solid #e9ecef;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: all 0.28s; cursor: default;
+        }
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+            border-color: #b7e4c7;
+        }
+        .card-img {
+            height: 150px; display: flex; align-items: center;
+            justify-content: center; font-size: 52px;
+            position: relative; overflow: hidden;
+        }
+        .card-img.tram { background: linear-gradient(135deg, #d8f3dc 0%, #b7e4c7 100%); }
+        .card-img.inuka { background: linear-gradient(135deg, #f3d8f5 0%, #e4b5ea 100%); }
+        .badge {
+            position: absolute; top: 10px; right: 10px;
+            font-size: 10px; font-weight: 700; padding: 4px 9px;
+            border-radius: 12px; color: #fff;
+        }
+        .badge.tram-badge { background: #1b4332; }
+        .badge.inuka-badge { background: #6f42c1; }
+        .card-body { padding: 16px; }
+        .card-nome {
+            font-size: 13px; font-weight: 600; color: #1a1a2e;
+            margin-bottom: 6px; line-height: 1.4; min-height: 38px;
+        }
+        .card-preco {
+            font-size: 18px; font-weight: 700; color: #1b4332; margin-bottom: 14px;
+        }
+        .card-preco small { font-size: 12px; color: #6c757d; font-weight: 400; }
+        .btn-wa {
+            width: 100%; padding: 10px;
+            background: #25D366; color: #fff; border: none;
+            border-radius: 10px; font-size: 12px; font-weight: 600;
+            cursor: pointer; transition: all 0.2s;
+            display: flex; align-items: center; justify-content: center; gap: 7px;
+            font-family: 'Poppins', sans-serif;
+        }
+        .btn-wa:hover { background: #1da851; transform: scale(1.02); }
+        .btn-wa i { font-size: 14px; }
+
+        /* ===== VANTAGENS ===== */
+        .vantagens-sec {
+            background: linear-gradient(135deg, #1b4332, #2d6a4f);
+            padding: 56px 30px;
+        }
+        .vantagens-inner { max-width: 1200px; margin: 0 auto; }
+        .vantagens-titulo {
+            text-align: center; font-family: 'Montserrat', sans-serif;
+            font-size: 22px; font-weight: 700; color: #fff; margin-bottom: 32px;
+        }
+        .vantagens-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        .vantagem {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 16px; padding: 28px 20px; text-align: center;
+            transition: all 0.2s;
+        }
+        .vantagem:hover { background: rgba(255,255,255,0.14); transform: translateY(-4px); }
+        .vantagem-icon { font-size: 36px; margin-bottom: 14px; }
+        .vantagem h4 { font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 8px; }
+        .vantagem p { font-size: 12px; color: #b7e4c7; line-height: 1.6; }
+
+        /* ===== FOOTER ===== */
+        .footer { background: #081c15; color: #b7e4c7; padding: 40px 30px; text-align: center; }
+        .footer-logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 20px; font-weight: 700; color: #fff; margin-bottom: 16px;
+        }
+        .footer-info { font-size: 13px; line-height: 2.2; }
+        .footer-info a { color: #95d5b2; text-decoration: none; }
+        .footer-info a:hover { color: #fff; }
+        .footer-divider { border: none; border-top: 1px solid rgba(255,255,255,0.1); margin: 20px auto; max-width: 400px; }
+        .footer-copy { font-size: 11px; color: #52b788; margin-top: 16px; }
+        .footer-site a { 
+            display: inline-block; margin-top: 12px;
+            color: #95d5b2; text-decoration: none; font-size: 13px;
+            border: 1px solid rgba(255,255,255,0.2); padding: 6px 16px;
+            border-radius: 20px; transition: all 0.2s;
+        }
+        .footer-site a:hover { background: rgba(255,255,255,0.1); color: #fff; }
+
+        /* ===== WHATSAPP FLUTUANTE ===== */
+        .wa-float {
+            position: fixed; bottom: 24px; right: 24px;
+            width: 58px; height: 58px; background: #25D366;
+            border-radius: 50%; display: flex; align-items: center;
+            justify-content: center; font-size: 28px;
+            box-shadow: 0 4px 20px rgba(37,211,102,0.5);
+            text-decoration: none; z-index: 9999;
+            animation: waPulse 2.5s infinite;
+            transition: transform 0.2s;
+        }
+        .wa-float:hover { transform: scale(1.12); }
+        @keyframes waPulse {
+            0%,100% { box-shadow: 0 4px 20px rgba(37,211,102,0.5); }
+            50% { box-shadow: 0 4px 32px rgba(37,211,102,0.85); }
+        }
+
+        /* ===== HIDDEN ===== */
+        .hidden { display: none !important; }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .nav-links .nav-link:not(.nav-wa):not(.loja-btn) { display: none; }
+            .hero h1 { font-size: 26px; }
+            .hero { padding: 50px 20px; }
+            .secao { padding: 36px 16px; }
+            .produtos-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+            .header { padding: 0 16px; }
+        }
+        @media (max-width: 420px) {
+            .produtos-grid { grid-template-columns: 1fr 1fr; }
+            .card-img { height: 120px; font-size: 40px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header class="header">
+    <div class="nav-wrapper">
+        <a href="#" class="logo">
+            <div class="logo-icon">🌿</div>
+            <div class="logo-text">
+                <strong>GRUTUR</strong>
+                <span>Ecoturismo, Lda</span>
+            </div>
+        </a>
+        <nav class="nav-links">
+            <a href="#tramontina" class="nav-link">Tramontina</a>
+            <a href="#inuka" class="nav-link">Cosméticos INUKA</a>
+            <a href="https://www.grutur.com" class="nav-link loja-btn" target="_blank">🌐 Site Principal</a>
+            <a href="https://wa.me/244956735104?text=Ol%C3%A1%20Grutur!%20Gostaria%20de%20saber%20mais%20sobre%20os%20vossos%20produtos." 
+               target="_blank" class="nav-wa">
+                <i class="fab fa-whatsapp"></i> WhatsApp
+            </a>
+        </nav>
+    </div>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+    <div class="hero-badge">🏪 Loja Online Oficial · Luanda, Angola</div>
+    <h1>Loja <span>Grutur</span><br>Produtos de Qualidade</h1>
+    <p>Distribuidores oficiais Tramontina e INUKA em Angola. Encomende pelo WhatsApp com entrega em Luanda.</p>
+    <div class="hero-btns">
+        <a href="#tramontina" class="hero-btn primary">🍳 Ver Tramontina</a>
+        <a href="#inuka" class="hero-btn secondary">💄 Ver Cosméticos INUKA</a>
+    </div>
+</section>
+
+<!-- ===== FILTROS ===== -->
+<div class="filtros-bar">
+    <button class="filtro active" id="f-todos" onclick="filtrar('todos')">🛒 Todos os Produtos</button>
+    <button class="filtro" id="f-tram" onclick="filtrar('tram')">🍳 Tramontina</button>
+    <button class="filtro" id="f-inuka" onclick="filtrar('inuka')">💄 Cosméticos INUKA</button>
+</div>
+
+<!-- ===== TRAMONTINA ===== -->
+<div id="sec-tram">
+    <section class="secao" id="tramontina">
+        <div class="secao-header">
+            <div class="secao-icon tram">🍳</div>
+            <div>
+                <div class="secao-titulo">Produtos Tramontina</div>
+                <div class="secao-sub">Linha profissional para restauração · Distribuidores oficiais em Angola</div>
+                <div class="secao-divider"></div>
+            </div>
+        </div>
+        <div class="produtos-grid">
+
+            <div class="card">
+                <div class="card-img tram">🥘<span class="badge tram-badge">OFICIAL</span></div>
+                <div class="card-body">
+                    <div class="card-nome">Panela Profissional Inox 20cm</div>
+                    <div class="card-preco">15.500 Kz <small>/ unidade</small></div>
+                    <button class="btn-wa" onclick="encomendar('Panela Profissional Inox 20cm — 15.500 Kz')">
+                        <i class="fab fa-whatsapp"></i> Encomendar
+                    </button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img tram">🍲<span class="badge tram-badge">OFICIAL</span></div>
+                <div class="card-body">
+                    <div class="card-nome">Jogo de Panelas Tramontina 5 peças</div>
+                    <div class="card-preco">45.000 Kz <small>/ jogo</small></div>
+                    <button class="btn-wa" onclick="encomendar('Jogo de Panelas Tramontina 5 peças — 45.000 Kz')">
+                        <i class="fab fa-whatsapp"></i> Encomendar
+                    </button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img tram">🍴<span class="badge tram-badge">OFICIAL</span></div>
+                <div class="card-body">
+                    <div class="card-nome">Set Talheres Profissional 24 peças</div>
+                    <div class="card-preco">28.000 Kz <small>/ set</small></div>
+                    <button class="btn-wa" onclick="encomendar('Set Talheres Profissional 24 peças — 28.000 Kz')">
+                        <i class="fab fa-whatsapp"></i> Encomendar
+                    </button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img tram">🍳<span class="badge tram-badge">OFICIAL</span></div>
+                <div class="card-body">
+                    <div class="card-nome">Frigideira Antiaderente 30cm</div>
+                    <div class="card-preco">12.800 Kz <small>/ unidade</small></div>
+                    <button class="btn-wa" onclick="encomendar('Frigideira Antiaderente 30cm — 12.800 Kz')">
+                        <i class="fab fa-whatsapp"></i> Encomendar
+                    </button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img tram">🏭<span class="badge tram-badge">OFICIAL</span></div>
+                <div class="card-body">
+                    <div class="card-nome">Panela Industrial 30 Litros</div>
+                    <div class="card-preco">38.000 Kz <small>/ unidade</small></div>
+                    <button class="btn-wa" onclick="encomendar('Panela Industrial 30 Litros — 38.000 Kz')">
+                        <i class="fab fa-whatsapp"></i> Encomendar
+                    </button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img tram">🔪<span class="badge tram-badge">OFICIAL</span></div>
+                <div class="card-body">
+                    <div class="card-nome">Kit Utensílios Cozinha 12 peças</div>
+                    <div class="card-preco">18.500 Kz <small>/ kit</small></div>
+                    <button class="btn-wa" onclick="encomendar('Kit Utensílios Cozinha 12 peças — 18.500 Kz')">
+                        <i class="fab fa-whatsapp"></i> Encomendar
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </section>
+</div>
+
+<!-- ===== INUKA ===== -->
+<div id="sec-inuka" style="background:#fafafa;">
+    <section class="secao" id="inuka">
+        <div class="secao-header">
+            <div class="secao-icon inuka">💄</div>
+            <div>
+                <div class="secao-titulo">Cosméticos INUKA</div>
+                <div class="secao-sub">Always With You · Linha natural e sustentável · Distribuidores oficiais</div>
+                <div class="secao-divider" style="background:#9b59b6;"></div>
+            </div>
+        </div>
+        <div class="produtos-grid">
+
+            <div class="card">
+                <div class="card-img inuka">🌸<span class="badge inuka-badge">INUKA</span></div>
+                <div class="card-body">
+                    <div class="card-nome">Perfume INUKA Feminino 30ml</div>
+                    <div class="card-preco">8.500 Kz <small>/ unidade</small></div>
+                    <button class="btn-wa" onclick="encomendar('Perfume INUKA Feminino 30ml — 8.500 Kz')">
+                        <i class="fab fa-whatsapp"></i> Encomendar
+                    </button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img inuka">🌊<span class="badge inuka-badge">INUKA</span></div>
+                <div class="card-body">
+                    <div class="card-nome">Perfume INUKA Masculino 30ml</div>
+                    <div class="card-preco">8.500 Kz <small>/ unidade</small></div>
+                    <button class="btn-wa" onclick="encomendar('Perfume INUKA Masculino 30ml — 8.500 Kz')">
+                        <i class="fab fa-whatsapp"></i> Encomendar
+                    </button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img inuka">🧴<span class="badge inuka-badge">MOHLOLO</span></div>
+                <div class="card-body">
+                    <div class="card-nome">Linha Mohlolo Cabelos — Shampoo</div>
+                    <div class="card-preco">5.200 Kz <small>/ unidade</small></div>
+                    <button class="btn-wa" onclick="encomendar('Linha Mohlolo Shampoo — 5.200 Kz')">
+                        <i class="fab fa-whatsapp"></i> Encomendar
+                    </button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img inuka">💆<span class="badge inuka-badge">MOHLOLO</span></div>
+                <div class="card-body">
+                    <div class="card-nome">Linha Mohlolo Cabelos — Condicionador</div>
+                    <div class="card-preco">5.200 Kz <small>/ unidade</small></div>
+                    <button class="btn-wa" onclick="encomendar('Linha Mohlolo Condicionador — 5.200 Kz')">
+                        <i class="fab fa-whatsapp"></i> Encomendar
+                    </button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img inuka">✨<span class="badge inuka-badge">INUKA</span></div>
+                <div class="card-body">
+                    <div class="card-nome">Kit Skincare INUKA — 3 produtos</div>
+                    <div class="card-preco">18.000 Kz <small>/ kit</small></div>
+                    <button class="btn-wa" onclick="encomendar('Kit Skincare INUKA 3 produtos — 18.000 Kz')">
+                        <i class="fab fa-whatsapp"></i> Encomendar
+                    </button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img inuka">💋<span class="badge inuka-badge">INUKA</span></div>
+                <div class="card-body">
+                    <div class="card-nome">Maquilhagem INUKA — Base Líquida</div>
+                    <div class="card-preco">7.800 Kz <small>/ unidade</small></div>
+                    <button class="btn-wa" onclick="encomendar('Maquilhagem INUKA Base Líquida — 7.800 Kz')">
+                        <i class="fab fa-whatsapp"></i> Encomendar
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </section>
+</div>
+
+<!-- ===== VANTAGENS ===== -->
+<div class="vantagens-sec">
+    <div class="vantagens-inner">
+        <div class="vantagens-titulo">Porquê escolher a Grutur?</div>
+        <div class="vantagens-grid">
+            <div class="vantagem">
+                <div class="vantagem-icon">🏆</div>
+                <h4>Distribuidores Oficiais</h4>
+                <p>Produtos 100% originais e certificados das marcas Tramontina e INUKA</p>
+            </div>
+            <div class="vantagem">
+                <div class="vantagem-icon">🚚</div>
+                <h4>Entrega em Luanda</h4>
+                <p>Entrega rápida e segura. Condomínio Oceanus e toda a cidade de Luanda</p>
+            </div>
+            <div class="vantagem">
+                <div class="vantagem-icon">💬</div>
+                <h4>Suporte WhatsApp</h4>
+                <p>Atendimento personalizado antes e depois da compra. Respondemos rapidamente</p>
+            </div>
+            <div class="vantagem">
+                <div class="vantagem-icon">🌿</div>
+                <h4>Sustentabilidade</h4>
+                <p>Comprometidos com práticas ecológicas e produtos que respeitam o ambiente</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+    <div class="footer-logo">🌿 GRUTUR — Ecoturismo, Lda</div>
+    <div class="footer-info">
+        📍 Condomínio Oceanus, Luanda, Angola<br>
+        📞 <a href="tel:+244956735104">+244 956 735 104</a><br>
+        ✉️ <a href="mailto:jurema.grutur@gmail.com">jurema.grutur@gmail.com</a>
+    </div>
+    <div class="footer-site">
+        <a href="https://www.grutur.com" target="_blank">🌐 Visitar o site principal — www.grutur.com</a>
+    </div>
+    <hr class="footer-divider">
+    <div class="footer-copy">© 2026 Grutur — Ecoturismo, Lda. Todos os direitos reservados.</div>
+</footer>
+
+<!-- ===== WHATSAPP FLUTUANTE ===== -->
+<a class="wa-float" 
+   href="https://wa.me/244956735104?text=Ol%C3%A1%20Grutur!%20Gostaria%20de%20saber%20mais%20sobre%20os%20vossos%20produtos." 
+   target="_blank" title="Falar no WhatsApp">
+    <i class="fab fa-whatsapp" style="color:#fff;"></i>
+</a>
+
+<script>
+    const WA = '244956735104';
+
+    function encomendar(produto) {
+        const msg = 'Olá Grutur! Tenho interesse no seguinte produto:\n\n🛒 ' + produto + '\n\nPodem confirmar disponibilidade e prazo de entrega? Obrigado!';
+        window.open('https://wa.me/' + WA + '?text=' + encodeURIComponent(msg), '_blank');
+    }
+
+    function filtrar(cat) {
+        const tram = document.getElementById('sec-tram');
+        const inuka = document.getElementById('sec-inuka');
+        document.querySelectorAll('.filtro').forEach(f => f.classList.remove('active'));
+        document.getElementById('f-' + cat === 'todos' ? 'f-todos' : 'f-' + cat).classList.add('active');
+
+        if (cat === 'todos') {
+            tram.classList.remove('hidden');
+            inuka.classList.remove('hidden');
+            document.getElementById('f-todos').classList.add('active');
+        } else if (cat === 'tram') {
+            tram.classList.remove('hidden');
+            inuka.classList.add('hidden');
+            document.getElementById('f-tram').classList.add('active');
+        } else {
+            tram.classList.add('hidden');
+            inuka.classList.remove('hidden');
+            document.getElementById('f-inuka').classList.add('active');
+        }
+    }
+
+    // Scroll suave
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', e => {
+            const target = document.querySelector(a.getAttribute('href'));
+            if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+        });
+    });
+</script>
+
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"4edd5f8ec12a48cfa682ab8261b80a79"}' crossorigin="anonymous"></script>
+</body>
+</html>

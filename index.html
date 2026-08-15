@@ -1,187 +1,190 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Loja Grutur | Tramontina & INUKA</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
-    <style>
-        *{margin:0;padding:0;box-sizing:border-box}
-        body{font-family:'Poppins',sans-serif;background:#f8f9fa;color:#333}
-        .header{background:#1b4332;padding:0 24px;position:sticky;top:0;z-index:1000;box-shadow:0 2px 10px rgba(0,0,0,0.3)}
-        .nav-wrapper{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:70px}
-        .logo img{height:50px;width:auto;filter:brightness(0) invert(1)}
-        .nav-links{display:flex;gap:8px;align-items:center}
-        .nav-link{color:#b7e4c7;font-size:13px;text-decoration:none;padding:8px 14px;border-radius:8px;transition:all 0.2s;font-weight:500}
-        .nav-link:hover{background:rgba(255,255,255,0.1);color:#fff}
-        .nav-wa{background:#25D366;color:#fff;padding:9px 16px;border-radius:20px;font-size:13px;font-weight:600;text-decoration:none;display:flex;align-items:center;gap:6px}
-        .nav-wa:hover{background:#1da851}
-        .hero{background:linear-gradient(135deg,#081c15 0%,#1b4332 40%,#2d6a4f 70%,#40916c 100%);padding:80px 24px;text-align:center;color:#fff}
-        .hero-logo{height:90px;width:auto;filter:brightness(0) invert(1);margin-bottom:24px}
-        .hero-badge{display:inline-block;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);padding:6px 18px;border-radius:20px;font-size:12px;color:#95d5b2;margin-bottom:18px}
-        .hero h1{font-family:'Montserrat',sans-serif;font-size:36px;font-weight:700;margin-bottom:14px;line-height:1.2}
-        .hero h1 span{color:#95d5b2}
-        .hero p{font-size:15px;color:#b7e4c7;margin-bottom:32px;max-width:520px;margin-left:auto;margin-right:auto}
-        .hero-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
-        .hero-btn{padding:13px 28px;border-radius:30px;font-size:14px;font-weight:600;cursor:pointer;border:none;transition:all 0.25s;font-family:'Poppins',sans-serif;text-decoration:none;display:inline-flex;align-items:center;gap:10px}
-        .hero-btn:hover{transform:translateY(-3px);box-shadow:0 8px 20px rgba(0,0,0,0.3)}
-        .btn-tram{background:#fff;color:#0000aa}
-        .btn-inuka{background:transparent;color:#fff;border:2px solid #c8a96e}
-        .hero-btn img{height:22px;width:auto;object-fit:contain}
-        .btn-inuka img{filter:brightness(0) invert(1)}
-        .filtros-bar{background:#fff;padding:14px 24px;border-bottom:2px solid #e9ecef;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;position:sticky;top:70px;z-index:99;box-shadow:0 2px 8px rgba(0,0,0,0.06)}
-        .filtro{padding:9px 22px;border-radius:25px;font-size:13px;font-weight:600;cursor:pointer;border:2px solid #dee2e6;background:#fff;color:#555;transition:all 0.2s;font-family:'Poppins',sans-serif;display:flex;align-items:center;gap:8px}
-        .filtro img{height:18px;width:auto;object-fit:contain}
-        .filtro.active,.filtro:hover{background:#1b4332;color:#fff;border-color:#1b4332}
-        .filtro.active img,.filtro:hover img{filter:brightness(0) invert(1)}
-        .secao{padding:48px 24px;max-width:1200px;margin:0 auto}
-        .secao-header{display:flex;align-items:center;gap:20px;margin-bottom:28px;padding-bottom:18px;border-bottom:3px solid #e9ecef}
-        .secao-logo-wrap{background:#fff;border-radius:14px;padding:10px 18px;box-shadow:0 2px 10px rgba(0,0,0,0.08);border:1px solid #e9ecef;display:flex;align-items:center;justify-content:center;min-width:160px}
-        .secao-logo-wrap img{height:36px;width:auto;object-fit:contain}
-        .secao-titulo{font-family:'Montserrat',sans-serif;font-size:22px;font-weight:700;color:#1b4332}
-        .secao-sub{font-size:13px;color:#6c757d;margin-top:4px}
-        .secao-divider{height:3px;width:50px;background:#40916c;border-radius:2px;margin-top:8px}
-        .produtos-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:20px}
-        .card{background:#fff;border-radius:16px;overflow:hidden;border:1px solid #e9ecef;box-shadow:0 2px 10px rgba(0,0,0,0.05);transition:all 0.28s}
-        .card:hover{transform:translateY(-6px);box-shadow:0 12px 30px rgba(0,0,0,0.12);border-color:#b7e4c7}
-        .card-img{height:140px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
-        .card-img.tram{background:linear-gradient(135deg,#dce8ff,#b3c8ff)}
-        .card-img.inuka{background:linear-gradient(135deg,#fdf3e0,#f0d9a8)}
-        .card-img img{height:55px;width:auto;object-fit:contain;opacity:0.35}
-        .badge{position:absolute;top:10px;right:10px;font-size:10px;font-weight:700;padding:4px 9px;border-radius:12px;color:#fff}
-        .badge.tram-badge{background:#0000aa}
-        .badge.inuka-badge{background:#8a6332}
-        .card-body{padding:16px}
-        .card-nome{font-size:13px;font-weight:600;color:#1a1a2e;margin-bottom:6px;line-height:1.4;min-height:38px}
-        .card-preco{font-size:18px;font-weight:700;color:#1b4332;margin-bottom:14px}
-        .card-preco small{font-size:12px;color:#6c757d;font-weight:400}
-        .btn-wa{width:100%;padding:10px;background:#25D366;color:#fff;border:none;border-radius:10px;font-size:12px;font-weight:600;cursor:pointer;transition:all 0.2s;display:flex;align-items:center;justify-content:center;gap:7px;font-family:'Poppins',sans-serif;text-decoration:none}
-        .btn-wa:hover{background:#1da851;transform:scale(1.02)}
-        .vantagens-sec{background:linear-gradient(135deg,#1b4332,#2d6a4f);padding:56px 24px}
-        .vantagens-inner{max-width:1200px;margin:0 auto}
-        .vantagens-titulo{text-align:center;font-family:'Montserrat',sans-serif;font-size:22px;font-weight:700;color:#fff;margin-bottom:32px}
-        .vantagens-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px}
-        .vantagem{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:16px;padding:28px 20px;text-align:center;transition:all 0.2s}
-        .vantagem:hover{background:rgba(255,255,255,0.14);transform:translateY(-4px)}
-        .vantagem-icon{font-size:36px;margin-bottom:14px}
-        .vantagem h4{font-size:14px;font-weight:700;color:#fff;margin-bottom:8px}
-        .vantagem p{font-size:12px;color:#b7e4c7;line-height:1.6}
-        .footer{background:#081c15;color:#b7e4c7;padding:48px 24px;text-align:center}
-        .footer-logo-img{height:60px;width:auto;filter:brightness(0) invert(1);margin-bottom:20px}
-        .footer-info{font-size:13px;line-height:2.4}
-        .footer-info a{color:#95d5b2;text-decoration:none}
-        .footer-info a:hover{color:#fff}
-        .footer-divider{border:none;border-top:1px solid rgba(255,255,255,0.1);margin:20px auto;max-width:400px}
-        .footer-copy{font-size:11px;color:#52b788;margin-top:16px}
-        .wa-float{position:fixed;bottom:28px;right:28px;z-index:999;background:#25D366;color:#fff;width:58px;height:58px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px;box-shadow:0 4px 20px rgba(37,211,102,0.5);text-decoration:none;transition:all 0.25s}
-        .wa-float:hover{background:#1da851;transform:scale(1.1)}
-        .inuka-bg{background:#fdf8f0;padding:4px 0}
-        .inuka-titulo{color:#8a6332 !important}
-        .inuka-divider{background:#c8a96e !important}
-        .inuka-logo-wrap{background:#fdf3e0 !important;border-color:#e8d5a3 !important}
-        @media(max-width:600px){.hero h1{font-size:26px}.hero-logo{height:65px}.nav-links{display:none}.secao{padding:32px 16px}}
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Loja Grutur | Tramontina & INUKA</title>
+<meta name="description" content="Loja Online Grutur - Produtos Tramontina e Cosméticos INUKA em Angola">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Poppins',sans-serif;background:#f8f9fa;color:#333}
+.header{background:#1b4332;padding:0 24px;position:sticky;top:0;z-index:1000;box-shadow:0 2px 10px rgba(0,0,0,0.3)}
+.nav-wrapper{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:70px}
+.logo img{height:50px;width:auto;filter:brightness(0) invert(1)}
+.nav-links{display:flex;gap:8px;align-items:center}
+.nav-link{color:#b7e4c7;font-size:13px;text-decoration:none;padding:8px 14px;border-radius:8px;transition:all 0.2s;font-weight:500}
+.nav-link:hover{background:rgba(255,255,255,0.1);color:#fff}
+.nav-wa{background:#25D366;color:#fff;padding:9px 16px;border-radius:20px;font-size:13px;font-weight:600;text-decoration:none;display:flex;align-items:center;gap:6px}
+.nav-wa:hover{background:#1da851}
+.hero{background:linear-gradient(135deg,#081c15 0%,#1b4332 40%,#2d6a4f 70%,#40916c 100%);padding:80px 24px;text-align:center;color:#fff}
+.hero-logo{height:90px;width:auto;filter:brightness(0) invert(1);margin-bottom:24px}
+.hero-badge{display:inline-block;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);padding:6px 18px;border-radius:20px;font-size:12px;color:#95d5b2;margin-bottom:18px}
+.hero h1{font-family:'Montserrat',sans-serif;font-size:36px;font-weight:700;margin-bottom:14px;line-height:1.2}
+.hero h1 span{color:#95d5b2}
+.hero p{font-size:15px;color:#b7e4c7;margin-bottom:32px;max-width:520px;margin-left:auto;margin-right:auto}
+.hero-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.hero-btn{padding:13px 28px;border-radius:30px;font-size:14px;font-weight:600;cursor:pointer;border:none;transition:all 0.25s;font-family:'Poppins',sans-serif;text-decoration:none;display:inline-flex;align-items:center;gap:10px}
+.hero-btn:hover{transform:translateY(-3px);box-shadow:0 8px 20px rgba(0,0,0,0.3)}
+.btn-tram{background:#fff;color:#0000aa}
+.btn-inuka{background:transparent;color:#fff;border:2px solid #c8a96e}
+.hero-btn img{height:22px;width:auto;object-fit:contain}
+.btn-inuka img{filter:brightness(0) invert(1)}
+.filtros-bar{background:#fff;padding:14px 24px;border-bottom:2px solid #e9ecef;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;position:sticky;top:70px;z-index:99;box-shadow:0 2px 8px rgba(0,0,0,0.06)}
+.filtro{padding:9px 22px;border-radius:25px;font-size:13px;font-weight:600;cursor:pointer;border:2px solid #dee2e6;background:#fff;color:#555;transition:all 0.2s;font-family:'Poppins',sans-serif;display:flex;align-items:center;gap:8px}
+.filtro img{height:18px;width:auto;object-fit:contain}
+.filtro.active,.filtro:hover{background:#1b4332;color:#fff;border-color:#1b4332}
+.filtro.active img,.filtro:hover img{filter:brightness(0) invert(1)}
+.secao{padding:48px 24px;max-width:1200px;margin:0 auto}
+.secao-header{display:flex;align-items:center;gap:20px;margin-bottom:28px;padding-bottom:18px;border-bottom:3px solid #e9ecef}
+.secao-logo-wrap{background:#fff;border-radius:14px;padding:10px 18px;box-shadow:0 2px 10px rgba(0,0,0,0.08);border:1px solid #e9ecef;display:flex;align-items:center;justify-content:center;min-width:160px}
+.secao-logo-wrap img{height:36px;width:auto;object-fit:contain}
+.secao-titulo{font-family:'Montserrat',sans-serif;font-size:22px;font-weight:700;color:#1b4332}
+.secao-sub{font-size:13px;color:#6c757d;margin-top:4px}
+.secao-divider{height:3px;width:50px;background:#40916c;border-radius:2px;margin-top:8px}
+.produtos-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:20px}
+.card{background:#fff;border-radius:16px;overflow:hidden;border:1px solid #e9ecef;box-shadow:0 2px 10px rgba(0,0,0,0.05);transition:all 0.28s}
+.card:hover{transform:translateY(-6px);box-shadow:0 12px 30px rgba(0,0,0,0.12);border-color:#b7e4c7}
+.card-img{height:140px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.card-img.tram{background:linear-gradient(135deg,#dce8ff,#b3c8ff)}
+.card-img.inuka{background:linear-gradient(135deg,#fdf3e0,#f0d9a8)}
+.card-img img{height:55px;width:auto;object-fit:contain;opacity:0.4}
+.badge{position:absolute;top:10px;right:10px;font-size:10px;font-weight:700;padding:4px 9px;border-radius:12px;color:#fff}
+.badge.tram-badge{background:#0000aa}
+.badge.inuka-badge{background:#8a6332}
+.card-body{padding:16px}
+.card-nome{font-size:13px;font-weight:600;color:#1a1a2e;margin-bottom:6px;line-height:1.4;min-height:38px}
+.card-preco{font-size:18px;font-weight:700;color:#1b4332;margin-bottom:14px}
+.card-preco small{font-size:12px;color:#6c757d;font-weight:400}
+.btn-wa{width:100%;padding:10px;background:#25D366;color:#fff;border:none;border-radius:10px;font-size:12px;font-weight:600;cursor:pointer;transition:all 0.2s;display:flex;align-items:center;justify-content:center;gap:7px;font-family:'Poppins',sans-serif;text-decoration:none}
+.btn-wa:hover{background:#1da851;transform:scale(1.02)}
+.vantagens-sec{background:linear-gradient(135deg,#1b4332,#2d6a4f);padding:56px 24px}
+.vantagens-inner{max-width:1200px;margin:0 auto}
+.vantagens-titulo{text-align:center;font-family:'Montserrat',sans-serif;font-size:22px;font-weight:700;color:#fff;margin-bottom:32px}
+.vantagens-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px}
+.vantagem{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:16px;padding:28px 20px;text-align:center;transition:all 0.2s}
+.vantagem:hover{background:rgba(255,255,255,0.14);transform:translateY(-4px)}
+.vantagem-icon{font-size:36px;margin-bottom:14px}
+.vantagem h4{font-size:14px;font-weight:700;color:#fff;margin-bottom:8px}
+.vantagem p{font-size:12px;color:#b7e4c7;line-height:1.6}
+.footer{background:#081c15;color:#b7e4c7;padding:48px 24px;text-align:center}
+.footer-logo-img{height:60px;width:auto;filter:brightness(0) invert(1);margin-bottom:20px}
+.footer-info{font-size:13px;line-height:2.4}
+.footer-info a{color:#95d5b2;text-decoration:none}
+.footer-info a:hover{color:#fff}
+.footer-divider{border:none;border-top:1px solid rgba(255,255,255,0.1);margin:20px auto;max-width:400px}
+.footer-copy{font-size:11px;color:#52b788;margin-top:16px}
+.wa-float{position:fixed;bottom:28px;right:28px;z-index:999;background:#25D366;color:#fff;width:58px;height:58px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px;box-shadow:0 4px 20px rgba(37,211,102,0.5);text-decoration:none;transition:all 0.25s}
+.wa-float:hover{background:#1da851;transform:scale(1.1)}
+.inuka-bg{background:#fdf8f0;padding:4px 0}
+.inuka-titulo{color:#8a6332!important}
+.inuka-divider{background:#c8a96e!important}
+.inuka-logo-wrap{background:#fdf3e0!important;border-color:#e8d5a3!important}
+@media(max-width:600px){.hero h1{font-size:26px}.hero-logo{height:65px}.nav-links{display:none}.secao{padding:32px 16px}}
+</style>
 </head>
 <body>
 
 <header class="header">
-    <div class="nav-wrapper">
-        <a href="#" class="logo"><img src="https://www.grutur.com/images/logo-grutur.png" alt="Grutur"></a>
-        <div class="nav-links">
-            <a href="#tramontina" class="nav-link">Tramontina</a>
-            <a href="#inuka" class="nav-link">INUKA</a>
-            <a href="https://www.grutur.com" class="nav-link" target="_blank">Site Principal</a>
-            <a href="https://wa.me/244956735104?text=Olá%20Grutur!%20Gostaria%20de%20saber%20mais%20sobre%20os%20vossos%20produtos." class="nav-wa" target="_blank"><i class="fab fa-whatsapp"></i> Contactar</a>
-        </div>
-    </div>
+<div class="nav-wrapper">
+<a href="#" class="logo"><img src="https://www.grutur.com/images/logo-grutur.png" alt="Grutur"></a>
+<div class="nav-links">
+<a href="#tramontina" class="nav-link">Tramontina</a>
+<a href="#inuka" class="nav-link">INUKA</a>
+<a href="https://www.grutur.com" class="nav-link" target="_blank">Site Principal</a>
+<a href="https://wa.me/244956735104" class="nav-wa" target="_blank"><i class="fab fa-whatsapp"></i> Contactar</a>
+</div>
+</div>
 </header>
 
 <section class="hero">
-    <img src="https://www.grutur.com/images/logo-grutur.png" alt="Grutur" class="hero-logo">
-    <div class="hero-badge">🌿 Distribuidores Oficiais em Angola</div>
-    <h1>Loja <span>Grutur</span><br>Produtos de Qualidade</h1>
-    <p>Distribuidores oficiais Tramontina e INUKA em Angola. Produtos premium entregues em Luanda.</p>
-    <div class="hero-btns">
-        <a href="#tramontina" class="hero-btn btn-tram"><img src="https://www.genspark.ai/api/files/s/CNlOHx3G" alt="Tramontina"> Ver Produtos</a>
-        <a href="#inuka" class="hero-btn btn-inuka"><img src="https://www.genspark.ai/api/files/s/3tzUTgY0" alt="INUKA"> Ver Cosméticos</a>
-    </div>
+<img src="https://www.grutur.com/images/logo-grutur.png" alt="Grutur" class="hero-logo">
+<div class="hero-badge">&#127807; Distribuidores Oficiais em Angola</div>
+<h1>Loja <span>Grutur</span><br>Produtos de Qualidade</h1>
+<p>Distribuidores oficiais Tramontina e INUKA em Angola. Produtos premium entregues em Luanda.</p>
+<div class="hero-btns">
+<a href="#tramontina" class="hero-btn btn-tram"><img src="https://logospng.org/wp-content/uploads/tramontina.png" alt="Tramontina"> Ver Produtos</a>
+<a href="#inuka" class="hero-btn btn-inuka"><img src="https://inuka.co.za/wp-content/uploads/2021/10/Website-LOGO.png" alt="INUKA"> Ver Cosméticos</a>
+</div>
 </section>
 
 <div class="filtros-bar">
-    <button class="filtro active" onclick="filtrar('todos',this)">🛍️ Todos os Produtos</button>
-    <button class="filtro" onclick="filtrar('tram',this)"><img src="https://www.genspark.ai/api/files/s/CNlOHx3G" alt="Tramontina"> Tramontina</button>
-    <button class="filtro" onclick="filtrar('inuka',this)"><img src="https://www.genspark.ai/api/files/s/3tzUTgY0" alt="INUKA"> INUKA</button>
+<button class="filtro active" onclick="filtrar('todos',this)">&#128722; Todos os Produtos</button>
+<button class="filtro" onclick="filtrar('tram',this)"><img src="https://logospng.org/wp-content/uploads/tramontina.png" alt="Tramontina"> Tramontina</button>
+<button class="filtro" onclick="filtrar('inuka',this)"><img src="https://inuka.co.za/wp-content/uploads/2021/10/Website-LOGO.png" alt="INUKA"> INUKA</button>
 </div>
 
 <div id="sec-tram">
 <div id="tramontina" class="secao">
-    <div class="secao-header">
-        <div class="secao-logo-wrap"><img src="https://www.genspark.ai/api/files/s/CNlOHx3G" alt="Tramontina"></div>
-        <div><div class="secao-titulo">Produtos Tramontina</div><div class="secao-sub">Linha profissional para restauração — panelas, talheres e utensílios</div><div class="secao-divider"></div></div>
-    </div>
-    <div class="produtos-grid">
-        <div class="card" data-cat="tram"><div class="card-img tram"><img src="https://www.genspark.ai/api/files/s/CNlOHx3G" alt=""><span class="badge tram-badge">Tramontina</span></div><div class="card-body"><div class="card-nome">Panela Profissional Inox 20 cm</div><div class="card-preco">15.500 Kz <small>/ unidade</small></div><a class="btn-wa" href="https://wa.me/244956735104?text=Olá!%20Quero%20encomendar%20a%20Panela%20Profissional%20Inox%2020cm%20Tramontina." target="_blank"><i class="fab fa-whatsapp"></i> Encomendar</a></div></div>
-        <div class="card" data-cat="tram"><div class="card-img tram"><img src="https://www.genspark.ai/api/files/s/CNlOHx3G" alt=""><span class="badge tram-badge">Tramontina</span></div><div class="card-body"><div class="card-nome">Jogo de Panelas Tramontina 5 Peças</div><div class="card-preco">45.000 Kz <small>/ conjunto</small></div><a class="btn-wa" href="https://wa.me/244956735104?text=Olá!%20Quero%20encomendar%20o%20Jogo%20de%20Panelas%20Tramontina%205%20peças." target="_blank"><i class="fab fa-whatsapp"></i> Encomendar</a></div></div>
-        <div class="card" data-cat="tram"><div class="card-img tram"><img src="https://www.genspark.ai/api/files/s/CNlOHx3G" alt=""><span class="badge tram-badge">Tramontina</span></div><div class="card-body"><div class="card-nome">Set Talheres Profissional 24 Peças</div><div class="card-preco">28.000 Kz <small>/ conjunto</small></div><a class="btn-wa" href="https://wa.me/244956735104?text=Olá!%20Quero%20encomendar%20o%20Set%20Talheres%20Profissional%2024%20peças." target="_blank"><i class="fab fa-whatsapp"></i> Encomendar</a></div></div>
-        <div class="card" data-cat="tram"><div class="card-img tram"><img src="https://www.genspark.ai/api/files/s/CNlOHx3G" alt=""><span class="badge tram-badge">Tramontina</span></div><div class="card-body"><div class="card-nome">Frigideira Antiaderente Profissional 28 cm</div><div class="card-preco">12.800 Kz <small>/ unidade</small></div><a class="btn-wa" href="https://wa.me/244956735104?text=Olá!%20Quero%20encomendar%20a%20Frigideira%20Antiaderente%2028cm%20Tramontina." target="_blank"><i class="fab fa-whatsapp"></i> Encomendar</a></div></div>
-        <div class="card" data-cat="tram"><div class="card-img tram"><img src="https://www.genspark.ai/api/files/s/CNlOHx3G" alt=""><span class="badge tram-badge">Tramontina</span></div><div class="card-body"><div class="card-nome">Faca Chef Profissional Tramontina</div><div class="card-preco">8.500 Kz <small>/ unidade</small></div><a class="btn-wa" href="https://wa.me/244956735104?text=Olá!%20Quero%20encomendar%20a%20Faca%20Chef%20Profissional%20Tramontina." target="_blank"><i class="fab fa-whatsapp"></i> Encomendar</a></div></div>
-        <div class="card" data-cat="tram"><div class="card-img tram"><img src="https://www.genspark.ai/api/files/s/CNlOHx3G" alt=""><span class="badge tram-badge">Tramontina</span></div><div class="card-body"><div class="card-nome">Wok Profissional Inox 32 cm</div><div class="card-preco">19.500 Kz <small>/ unidade</small></div><a class="btn-wa" href="https://wa.me/244956735104?text=Olá!%20Quero%20encomendar%20o%20Wok%20Profissional%20Inox%2032cm%20Tramontina." target="_blank"><i class="fab fa-whatsapp"></i> Encomendar</a></div></div>
-    </div>
+<div class="secao-header">
+<div class="secao-logo-wrap"><img src="https://logospng.org/wp-content/uploads/tramontina.png" alt="Tramontina"></div>
+<div><div class="secao-titulo">Produtos Tramontina</div><div class="secao-sub">Linha profissional — panelas, talheres e utensílios</div><div class="secao-divider"></div></div>
+</div>
+<div class="produtos-grid">
+<div class="card" data-cat="tram"><div class="card-img tram"><img src="https://logospng.org/wp-content/uploads/tramontina.png" alt=""><span class="badge tram-badge">Tramontina</span></div><div class="card-body"><div class="card-nome">Panela Profissional Inox 20 cm</div><div class="card-preco">15.500 Kz <small>/ unidade</small></div><a class="btn-wa" href="https://wa.me/244956735104?text=Quero%20encomendar%20Panela%20Tramontina%2020cm" target="_blank"><i class="fab fa-whatsapp"></i> Encomendar</a></div></div>
+<div class="card" data-cat="tram"><div class="card-img tram"><img src="https://logospng.org/wp-content/uploads/tramontina.png" alt=""><span class="badge tram-badge">Tramontina</span></div><div class="card-body"><div class="card-nome">Jogo de Panelas Tramontina 5 Peças</div><div class="card-preco">45.000 Kz <small>/ conjunto</small></div><a class="btn-wa" href="https://wa.me/244956735104?text=Quero%20encomendar%20Jogo%20Panelas%20Tramontina%205pcs" target="_blank"><i class="fab fa-whatsapp"></i> Encomendar</a></div></div>
+<div class="card" data-cat="tram"><div class="card-img tram"><img src="https://logospng.org/wp-content/uploads/tramontina.png" alt=""><span class="badge tram-badge">Tramontina</span></div><div class="card-body"><div class="card-nome">Set Talheres Profissional 24 Peças</div><div class="card-preco">28.000 Kz <small>/ conjunto</small></div><a class="btn-wa" href="https://wa.me/244956735104?text=Quero%20encomendar%20Set%20Talheres%20Tramontina%2024pcs" target="_blank"><i class="fab fa-whatsapp"></i> Encomendar</a></div></div>
+<div class="card" data-cat="tram"><div class="card-img tram"><img src="https://logospng.org/wp-content/uploads/tramontina.png" alt=""><span class="badge tram-badge">Tramontina</span></div><div class="card-body"><div class="card-nome">Frigideira Antiaderente 28 cm</div><div class="card-preco">12.800 Kz <small>/ unidade</small></div><a class="btn-wa" href="https://wa.me/244956735104?text=Quero%20encomendar%20Frigideira%20Tramontina%2028cm" target="_blank"><i class="fab fa-whatsapp"></i> Encomendar</a></div></div>
+<div class="card" data-cat="tram"><div class="card-img tram"><img src="https://logospng.org/wp-content/uploads/tramontina.png" alt=""><span class="badge tram-badge">Tramontina</span></div><div class="card-body"><div class="card-nome">Faca Chef Profissional Tramontina</div><div class="card-preco">8.500 Kz <small>/ unidade</small></div><a class="btn-wa" href="https://wa.me/244956735104?text=Quero%20encomendar%20Faca%20Chef%20Tramontina" target="_blank"><i class="fab fa-whatsapp"></i> Encomendar</a></div></div>
+<div class="card" data-cat="tram"><div class="card-img tram"><img src="https://logospng.org/wp-content/uploads/tramontina.png" alt=""><span class="badge tram-badge">Tramontina</span></div><div class="card-body"><div class="card-nome">Wok Profissional Inox 32 cm</div><div class="card-preco">19.500 Kz <small>/ unidade</small></div><a class="btn-wa" href="https://wa.me/244956735104?text=Quero%20encomendar%20Wok%20Tramontina%2032cm" target="_blank"><i class="fab fa-whatsapp"></i> Encomendar</a></div></div>
+</div>
 </div>
 </div>
 
 <div class="inuka-bg" id="sec-inuka">
 <div id="inuka" class="secao">
-    <div class="secao-header">
-        <div class="secao-logo-wrap inuka-logo-wrap"><img src="https://www.genspark.ai/api/files/s/3tzUTgY0" alt="INUKA"></div>
-        <div><div class="secao-titulo inuka-titulo">Cosméticos INUKA</div><div class="secao-sub">Always With You — perfumes, skincare e linha Mohlolo</div><div class="secao-divider inuka-divider"></div></div>
-    </div>
-    <div class="produtos-grid">
-        <div class="card" data-cat="inuka"><div class="card-img inuka"><img src="https://www.genspark.ai/api/files/s/3tzUTgY0" alt=""><span class="badge inuka-badge">INUKA</span></div><div class="card-body"><div class="card-nome">Perfume INUKA Feminino 30 ml</div><div class="card-preco">8.500 Kz <small>/ unidade</small></div><a class="btn-wa" href="https://wa.me/244956735104?text=Olá!%20Quero%20encomendar%20o%20Perfume%20INUKA%20Feminino%2030ml." target="_blank"><i class="fab fa-whatsapp"></i> Encomendar</a></div></div>
-        <div class="card" data-cat="inuka"><div class="card-img inuka"><img src="https://www.genspark.ai/api/files/s/3tzUTgY0" alt=""><span class="badge inuka-badge">INUKA</span></div><div class="card-body"><div class="card-nome">Linha Mohlolo — Shampoo Cabelos Naturais</div><div class="card-preco">5.200 Kz <small>/ unidade</small></div><a class="btn-wa" href="https://wa.me/244956735104?text=Olá!%20Quero%20encomendar%20o%20Shampoo%20Mohlolo%20INUKA." target="_blank"><i class="fab fa-whatsapp"></i> Encomendar</a></div></div>
-        <div class="card" data-cat="inuka"><div class="card-img inuka"><img src="https://www.genspark.ai/api/files/s/3tzUTgY0" alt=""><span class="badge inuka-badge">INUKA</span></div><div class="card-body"><div class="card-nome">Kit Skincare INUKA — Cuidado Completo</div><div class="card-preco">18.000 Kz <small>/ kit</small></div><a class="btn-wa" href="https://wa.me/244956735104?text=Olá!%20Quero%20encomendar%20o%20Kit%20Skincare%20INUKA." target="_blank"><i class="fab fa-whatsapp"></i> Encomendar</a></div></div>
-        <div class="card" data-cat="inuka"><div class="card-img inuka"><img src="https://www.genspark.ai/api/files/s/3tzUTgY0" alt=""><span class="badge inuka-badge">INUKA</span></div><div class="card-body"><div class="card-nome">Perfume INUKA Masculino 30 ml</div><div class="card-preco">8.500 Kz <small>/ unidade</small></div><a class="btn-wa" href="https://wa.me/244956735104?text=Olá!%20Quero%20encomendar%20o%20Perfume%20INUKA%20Masculino%2030ml." target="_blank"><i class="fab fa-whatsapp"></i> Encomendar</a></div></div>
-        <div class="card" data-cat="inuka"><div class="card-img inuka"><img src="https://www.genspark.ai/api/files/s/3tzUTgY0" alt=""><span class="badge inuka-badge">INUKA</span></div><div class="card-body"><div class="card-nome">Linha Mohlolo — Condicionador Intensivo</div><div class="card-preco">5.800 Kz <small>/ unidade</small></div><a class="btn-wa" href="https://wa.me/244956735104?text=Olá!%20Quero%20encomendar%20o%20Condicionador%20Mohlolo%20INUKA." target="_blank"><i class="fab fa-whatsapp"></i> Encomendar</a></div></div>
-        <div class="card" data-cat="inuka"><div class="card-img inuka"><img src="https://www.genspark.ai/api/files/s/3tzUTgY0" alt=""><span class="badge inuka-badge">INUKA</span></div><div class="card-body"><div class="card-nome">Maquilhagem Profissional INUKA</div><div class="card-preco">12.000 Kz <small>/ conjunto</small></div><a class="btn-wa" href="https://wa.me/244956735104?text=Olá!%20Quero%20encomendar%20a%20Maquilhagem%20Profissional%20INUKA." target="_blank"><i class="fab fa-whatsapp"></i> Encomendar</a></div></div>
-    </div>
+<div class="secao-header">
+<div class="secao-logo-wrap inuka-logo-wrap"><img src="https://inuka.co.za/wp-content/uploads/2021/10/Website-LOGO.png" alt="INUKA"></div>
+<div><div class="secao-titulo inuka-titulo">Cosméticos INUKA</div><div class="secao-sub">Always With You — perfumes, skincare e linha Mohlolo</div><div class="secao-divider inuka-divider"></div></div>
+</div>
+<div class="produtos-grid">
+<div class="card" data-cat="inuka"><div class="card-img inuka"><img src="https://inuka.co.za/wp-content/uploads/2021/10/Website-LOGO.png" alt=""><span class="badge inuka-badge">INUKA</span></div><div class="card-body"><div class="card-nome">Perfume INUKA Feminino 30 ml</div><div class="card-preco">8.500 Kz <small>/ unidade</small></div><a class="btn-wa" href="https://wa.me/244956735104?text=Quero%20encomendar%20Perfume%20INUKA%20Feminino%2030ml" target="_blank"><i class="fab fa-whatsapp"></i> Encomendar</a></div></div>
+<div class="card" data-cat="inuka"><div class="card-img inuka"><img src="https://inuka.co.za/wp-content/uploads/2021/10/Website-LOGO.png" alt=""><span class="badge inuka-badge">INUKA</span></div><div class="card-body"><div class="card-nome">Linha Mohlolo — Shampoo Cabelos Naturais</div><div class="card-preco">5.200 Kz <small>/ unidade</small></div><a class="btn-wa" href="https://wa.me/244956735104?text=Quero%20encomendar%20Shampoo%20Mohlolo%20INUKA" target="_blank"><i class="fab fa-whatsapp"></i> Encomendar</a></div></div>
+<div class="card" data-cat="inuka"><div class="card-img inuka"><img src="https://inuka.co.za/wp-content/uploads/2021/10/Website-LOGO.png" alt=""><span class="badge inuka-badge">INUKA</span></div><div class="card-body"><div class="card-nome">Kit Skincare INUKA — Cuidado Completo</div><div class="card-preco">18.000 Kz <small>/ kit</small></div><a class="btn-wa" href="https://wa.me/244956735104?text=Quero%20encomendar%20Kit%20Skincare%20INUKA" target="_blank"><i class="fab fa-whatsapp"></i> Encomendar</a></div></div>
+<div class="card" data-cat="inuka"><div class="card-img inuka"><img src="https://inuka.co.za/wp-content/uploads/2021/10/Website-LOGO.png" alt=""><span class="badge inuka-badge">INUKA</span></div><div class="card-body"><div class="card-nome">Perfume INUKA Masculino 30 ml</div><div class="card-preco">8.500 Kz <small>/ unidade</small></div><a class="btn-wa" href="https://wa.me/244956735104?text=Quero%20encomendar%20Perfume%20INUKA%20Masculino%2030ml" target="_blank"><i class="fab fa-whatsapp"></i> Encomendar</a></div></div>
+<div class="card" data-cat="inuka"><div class="card-img inuka"><img src="https://inuka.co.za/wp-content/uploads/2021/10/Website-LOGO.png" alt=""><span class="badge inuka-badge">INUKA</span></div><div class="card-body"><div class="card-nome">Body Lotion INUKA Hidratante 200 ml</div><div class="card-preco">6.800 Kz <small>/ unidade</small></div><a class="btn-wa" href="https://wa.me/244956735104?text=Quero%20encomendar%20Body%20Lotion%20INUKA%20200ml" target="_blank"><i class="fab fa-whatsapp"></i> Encomendar</a></div></div>
+<div class="card" data-cat="inuka"><div class="card-img inuka"><img src="https://inuka.co.za/wp-content/uploads/2021/10/Website-LOGO.png" alt=""><span class="badge inuka-badge">INUKA</span></div><div class="card-body"><div class="card-nome">Óleo Milagroso Mohlolo INUKA</div><div class="card-preco">7.200 Kz <small>/ unidade</small></div><a class="btn-wa" href="https://wa.me/244956735104?text=Quero%20encomendar%20Oleo%20Milagroso%20INUKA" target="_blank"><i class="fab fa-whatsapp"></i> Encomendar</a></div></div>
+</div>
 </div>
 </div>
 
 <section class="vantagens-sec">
-    <div class="vantagens-inner">
-        <div class="vantagens-titulo">✨ Porquê escolher a Grutur?</div>
-        <div class="vantagens-grid">
-            <div class="vantagem"><div class="vantagem-icon">🏆</div><h4>Distribuidores Oficiais</h4><p>Produtos 100% originais com garantia das marcas Tramontina e INUKA</p></div>
-            <div class="vantagem"><div class="vantagem-icon">📦</div><h4>Entrega em Luanda</h4><p>Entregamos os seus produtos directamente na sua morada em Luanda</p></div>
-            <div class="vantagem"><div class="vantagem-icon">💬</div><h4>Atendimento WhatsApp</h4><p>Resposta rápida e personalizada via WhatsApp para todas as encomendas</p></div>
-            <div class="vantagem"><div class="vantagem-icon">🌿</div><h4>Empresa Sustentável</h4><p>Comprometidos com práticas ecológicas e desenvolvimento sustentável</p></div>
-        </div>
-    </div>
+<div class="vantagens-inner">
+<div class="vantagens-titulo">Porquê escolher a Grutur?</div>
+<div class="vantagens-grid">
+<div class="vantagem"><div class="vantagem-icon">&#127775;</div><h4>Produtos Originais</h4><p>100% autênticos, importados directamente dos fabricantes oficiais.</p></div>
+<div class="vantagem"><div class="vantagem-icon">&#128666;</div><h4>Entrega em Luanda</h4><p>Entregamos no seu endereço com rapidez e segurança.</p></div>
+<div class="vantagem"><div class="vantagem-icon">&#129303;</div><h4>Suporte via WhatsApp</h4><p>Atendimento personalizado. Tire dúvidas antes de encomendar.</p></div>
+<div class="vantagem"><div class="vantagem-icon">&#127881;</div><h4>Distribuidores Oficiais</h4><p>Tramontina e INUKA certificados em Angola desde 2020.</p></div>
+</div>
+</div>
 </section>
 
 <footer class="footer">
-    <img src="https://www.grutur.com/images/logo-grutur.png" alt="Grutur" class="footer-logo-img">
-    <div class="footer-info">
-        <div>📍 Condomínio Oceanus, Luanda, Angola</div>
-        <div>📞 <a href="tel:+244956735104">+244 956 735 104</a></div>
-        <div>✉️ <a href="mailto:jurema.grutur@gmail.com">jurema.grutur@gmail.com</a></div>
-        <div>🌐 <a href="https://www.grutur.com" target="_blank">www.grutur.com</a></div>
-        <div>⏰ Segunda a Sexta: 9h–18h | Sábado: 9h–13h</div>
-    </div>
-    <hr class="footer-divider">
-    <div class="footer-copy">© 2026 Grutur — Ecoturismo, Lda. Todos os direitos reservados.</div>
+<img src="https://www.grutur.com/images/logo-grutur.png" alt="Grutur" class="footer-logo-img">
+<div class="footer-info">
+<div>&#128205; Condomínio Oceanus, Luanda, Angola</div>
+<div>&#128222; <a href="tel:+244956735104">+244 956 735 104</a></div>
+<div>&#128231; <a href="mailto:jurema.grutur@gmail.com">jurema.grutur@gmail.com</a></div>
+<div>&#127760; <a href="https://www.grutur.com" target="_blank">www.grutur.com</a></div>
+<div>&#128336; Seg-Sex: 08h-18h | Sab: 09h-13h</div>
+</div>
+<hr class="footer-divider">
+<div class="footer-copy">&copy; 2026 Grutur. Todos os direitos reservados.</div>
 </footer>
 
-<a href="https://wa.me/244956735104?text=Olá%20Grutur!%20Gostaria%20de%20saber%20mais%20sobre%20os%20vossos%20produtos." class="wa-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
+<a href="https://wa.me/244956735104" class="wa-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
 
 <script>
-function filtrar(cat,el){
-    document.querySelectorAll('.filtro').forEach(f=>f.classList.remove('active'));
-    el.classList.add('active');
-    document.querySelectorAll('.card').forEach(c=>{c.style.display=(cat==='todos'||c.dataset.cat===cat)?'':'none'});
-    document.getElementById('sec-tram').style.display=(cat==='todos'||cat==='tram')?'':'none';
-    document.getElementById('sec-inuka').style.display=(cat==='todos'||cat==='inuka')?'':'none';
+function filtrar(cat,btn){
+document.querySelectorAll('.filtro').forEach(b=>b.classList.remove('active'));
+btn.classList.add('active');
+var t=document.getElementById('sec-tram');
+var i=document.getElementById('sec-inuka');
+if(cat==='todos'){t.style.display='';i.style.display='';}
+else if(cat==='tram'){t.style.display='';i.style.display='none';}
+else if(cat==='inuka'){t.style.display='none';i.style.display='';}
 }
 </script>
 </body>

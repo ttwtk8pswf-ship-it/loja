@@ -19,7 +19,7 @@ body{font-family:'Poppins',sans-serif;background:#f8f9fa;color:#333}
 .nav-wa{background:#25D366;color:#fff;padding:9px 16px;border-radius:20px;font-size:13px;font-weight:600;text-decoration:none;display:flex;align-items:center;gap:6px}
 .nav-wa:hover{background:#1da851}
 .hero{background:linear-gradient(135deg,#081c15 0%,#1b4332 40%,#2d6a4f 70%,#40916c 100%);padding:80px 24px;text-align:center;color:#fff}
-.hero-logo{height:90px;width:auto;margin-bottom:24px}
+.hero-logo{height:130px;width:auto;margin-bottom:24px;display:block;margin-left:auto;margin-right:auto;filter:drop-shadow(0 4px 18px rgba(255,255,255,0.25));animation:floatLogo 3s ease-in-out infinite}
 .hero-badge{display:inline-block;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);padding:6px 18px;border-radius:20px;font-size:12px;color:#95d5b2;margin-bottom:18px}
 .hero h1{font-family:'Montserrat',sans-serif;font-size:36px;font-weight:700;margin-bottom:14px;line-height:1.2}
 .hero h1 span{color:#95d5b2}
@@ -82,6 +82,7 @@ body{font-family:'Poppins',sans-serif;background:#f8f9fa;color:#333}
 .inuka-titulo{color:#8a6332!important}
 .inuka-divider{background:#c8a96e!important}
 .inuka-logo-wrap{background:#fdf3e0!important;border-color:#e8d5a3!important}
+  @keyframes floatLogo{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
 @media(max-width:600px){.hero h1{font-size:26px}.hero-logo{height:65px}.nav-links{display:none}.secao{padding:32px 16px}}
 </style>
 </head>

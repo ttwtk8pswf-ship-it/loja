@@ -10,7 +10,7 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'Poppins',sans-serif;background:#f8f9fa;color:#333}
-.header{background:#1b4332;padding:0 24px;position:sticky;top:0;z-index:1000;box-shadow:0 2px 10px rgba(0,0,0,0.3)}
+.header{background:#1b4332;padding:0 24px;position:sticky;top:0;z-index:1000;box-shadow:0 2px 10px rgba(0,0,0,.3)}
 .nav-wrapper{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:70px}
 .logo img{height:50px;width:auto}
 .nav-links{display:flex;gap:8px;align-items:center}
@@ -44,7 +44,7 @@ body{font-family:'Poppins',sans-serif;background:#f8f9fa;color:#333}
 .secao-sub{font-size:13px;color:#6c757d;margin-top:4px}
 .secao-divider{height:3px;width:50px;background:#40916c;border-radius:2px;margin-top:8px}
 .produtos-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:20px}
-.card{background:#fff;border-radius:16px;overflow:hidden;border:1px solid #e9ecef;box-shadow:0 2px 10px rgba(0,0,0,0.05);transition:all 0.28s}
+.card{background:#fff;border-radius:16px;overflow:hidden;border:1px solid #e9ecef;box-shadow:0 2px 10px rgba(0,0,0,0.05);transition:all 0.28s;cursor:pointer}
 .card:hover{transform:translateY(-6px);box-shadow:0 12px 30px rgba(0,0,0,0.12);border-color:#b7e4c7}
 .card-img{height:140px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
 .card-img.tram{background:url('https://www.grutur.com/images/logo-grutur.png') center/120px no-repeat,linear-gradient(135deg,#dce8ff,#b3c8ff)}
@@ -82,7 +82,28 @@ body{font-family:'Poppins',sans-serif;background:#f8f9fa;color:#333}
 .inuka-divider{background:#c8a96e!important}
 .inuka-logo-wrap{background:#fdf3e0!important;border-color:#e8d5a3!important}
   @keyframes floatLogo{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
-@media(max-width:600px){.hero h1{font-size:26px}.hero-logo{height:65px}.nav-links{display:none}.secao{padding:32px 16px}}
+
+/* ===== MODAL DE PRODUTO ===== */
+.product-modal-overlay{position:fixed;inset:0;background:rgba(8,28,21,.85);z-index:9999;display:none;align-items:center;justify-content:center;padding:24px;backdrop-filter:blur(6px)}
+.product-modal-overlay.active{display:flex}
+.product-modal{position:relative;max-width:580px;width:100%;background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.5);animation:modalIn .3s ease-out;max-height:92vh;overflow-y:auto}
+@keyframes modalIn{from{transform:translateY(20px) scale(.96);opacity:0}to{transform:translateY(0) scale(1);opacity:1}}
+.product-modal-img{position:relative;height:200px;background:linear-gradient(135deg,#1b4332,#2d6a4f);display:flex;align-items:center;justify-content:center;padding:24px}
+.product-modal-img img{max-height:160px;max-width:65%;object-fit:contain;filter:drop-shadow(0 4px 12px rgba(0,0,0,.3))}
+.product-modal-cat{position:absolute;top:18px;left:18px;font-size:10px;font-weight:700;background:rgba(0,0,0,.6);color:#fff;padding:5px 10px;border-radius:12px;letter-spacing:1px;text-transform:uppercase}
+.product-modal-close{position:absolute;top:18px;right:18px;background:rgba(255,255,255,.2);color:#fff;border:none;width:36px;height:36px;border-radius:50%;font-size:20px;cursor:pointer;font-family:'Poppins',sans-serif;display:flex;align-items:center;justify-content:center;line-height:1;padding:0}
+.product-modal-close:hover{background:rgba(255,255,255,.35);transform:rotate(90deg)}
+.product-modal-body{padding:28px}
+.product-modal-name{font-family:'Montserrat',sans-serif;font-size:20px;font-weight:700;color:#1b4332;margin-bottom:6px;line-height:1.3}
+.product-modal-price{font-size:22px;font-weight:700;color:#2d6a4f;margin:6px 0 16px}
+.product-modal-desc{font-size:14px;color:#444;line-height:1.6;margin-bottom:18px}
+.product-modal-specs{background:#f5f8f6;border-radius:12px;padding:16px 20px;margin-bottom:22px;border:1px solid #e9ecef}
+.product-modal-specs h4{font-family:'Montserrat',sans-serif;font-size:11px;text-transform:uppercase;letter-spacing:1.2px;color:#2d6a4f;margin-bottom:10px;font-weight:700}
+.product-modal-specs ul{list-style:none;padding:0;margin:0}
+.product-modal-specs li{font-size:13px;color:#333;padding:6px 0;border-bottom:1px solid #e9ecef;display:flex;gap:10px}
+.product-modal-specs li:last-child{border-bottom:none}
+.product-modal-specs li strong{color:#1b4332;font-weight:600;min-width:120px}
+@media(max-width:600px){.hero h1{font-size:26px}.hero-logo{height:65px}.nav-links{display:none}.secao{padding:32px 16px}.product-modal{max-width:100%;border-radius:14px}.product-modal-body{padding:20px}.product-modal-specs li{flex-direction:column}.product-modal-specs li strong{min-width:0}}
 </style>
 </head>
 <body>
@@ -123,12 +144,12 @@ body{font-family:'Poppins',sans-serif;background:#f8f9fa;color:#333}
 <div><div class="secao-titulo">Produtos Tramontina</div><div class="secao-sub">Linha profissional — panelas, talheres e utensílios</div><div class="secao-divider"></div></div>
 </div>
 <div class="produtos-grid">
-<div class="card" data-cat="tram"><div class="card-img tram"><img src="https://logospng.org/wp-content/uploads/tramontina.png" alt=""><span class="badge tram-badge">Tramontina</span></div><div class="card-body"><div class="card-nome">Panela Profissional Inox 20 cm</div><div class="card-preco">15.500 Kz <small>/ unidade</small></div><a class="btn-wa" href="https://wa.me/244950409704?text=Quero%20encomendar%20Panela%20Tramontina%2020cm" target="_blank"><i class="fab fa-whatsapp"></i> Encomendar</a></div></div>
-<div class="card" data-cat="tram"><div class="card-img tram"><img src="https://logospng.org/wp-content/uploads/tramontina.png" alt=""><span class="badge tram-badge">Tramontina</span></div><div class="card-body"><div class="card-nome">Jogo de Panelas Tramontina 5 Peças</div><div class="card-preco">45.000 Kz <small>/ conjunto</small></div><a class="btn-wa" href="https://wa.me/244950409704?text=Quero%20encomendar%20Jogo%20Panelas%20Tramontina%205pcs" target="_blank"><i class="fab fa-whatsapp"></i> Encomendar</a></div></div>
-<div class="card" data-cat="tram"><div class="card-img tram"><img src="https://logospng.org/wp-content/uploads/tramontina.png" alt=""><span class="badge tram-badge">Tramontina</span></div><div class="card-body"><div class="card-nome">Set Talheres Profissional 24 Peças</div><div class="card-preco">28.000 Kz <small>/ conjunto</small></div><a class="btn-wa" href="https://wa.me/244950409704?text=Quero%20encomendar%20Set%20Talheres%20Tramontina%2024pcs" target="_blank"><i class="fab fa-whatsapp"></i> Encomendar</a></div></div>
-<div class="card" data-cat="tram"><div class="card-img tram"><img src="https://logospng.org/wp-content/uploads/tramontina.png" alt=""><span class="badge tram-badge">Tramontina</span></div><div class="card-body"><div class="card-nome">Frigideira Antiaderente 28 cm</div><div class="card-preco">12.800 Kz <small>/ unidade</small></div><a class="btn-wa" href="https://wa.me/244950409704?text=Quero%20encomendar%20Frigideira%20Tramontina%2028cm" target="_blank"><i class="fab fa-whatsapp"></i> Encomendar</a></div></div>
-<div class="card" data-cat="tram"><div class="card-img tram"><img src="https://logospng.org/wp-content/uploads/tramontina.png" alt=""><span class="badge tram-badge">Tramontina</span></div><div class="card-body"><div class="card-nome">Faca Chef Profissional Tramontina</div><div class="card-preco">8.500 Kz <small>/ unidade</small></div><a class="btn-wa" href="https://wa.me/244950409704?text=Quero%20encomendar%20Faca%20Chef%20Tramontina" target="_blank"><i class="fab fa-whatsapp"></i> Encomendar</a></div></div>
-<div class="card" data-cat="tram"><div class="card-img tram"><img src="https://logospng.org/wp-content/uploads/tramontina.png" alt=""><span class="badge tram-badge">Tramontina</span></div><div class="card-body"><div class="card-nome">Wok Profissional Inox 32 cm</div><div class="card-preco">19.500 Kz <small>/ unidade</small></div><a class="btn-wa" href="https://wa.me/244950409704?text=Quero%20encomendar%20Wok%20Tramontina%2032cm" target="_blank"><i class="fab fa-whatsapp"></i> Encomendar</a></div></div>
+<div class="card" data-cat="tram" data-name="Panela Profissional Inox 20 cm" data-price="15.500 Kz" data-desc="Panela profissional em aço inox com fundo triplo, ideal para cozinhados uniformes." data-specs='[["Material","Aço Inox 18/10"],["Diâmetro","20 cm"],["Capacidade","3,0 L"],["Compatibilidade","Gás, eléctrico, indução"],["Marca","Tramontina"],["Origem","Brasil"]]'><div class="card-img tram"><img src="https://logospng.org/wp-content/uploads/tramontina.png" alt=""><span class="badge tram-badge">Tramontina</span></div><div class="card-body"><div class="card-nome">Panela Profissional Inox 20 cm</div><div class="card-preco">15.500 Kz <small>/ unidade</small></div><a class="btn-wa" href="https://wa.me/244950409704?text=Quero%20encomendar%20Panela%20Tramontina%2020cm" target="_blank"><i class="fab fa-whatsapp"></i> Encomendar</a></div></div>
+<div class="card" data-cat="tram" data-name="Jogo de Panelas 5 Peças" data-price="45.000 Kz" data-desc="Conjunto de 5 panelas em aço inox com tampas de vidro temperado." data-specs='[["Peças","5 panelas + 5 tampas"],["Material","Aço Inox 18/10"],["Espessura","0,8 mm"],["Marca","Tramontina"],["Origem","Brasil"]]'><div class="card-img tram"><img src="https://logospng.org/wp-content/uploads/tramontina.png" alt=""><span class="badge tram-badge">Tramontina</span></div><div class="card-body"><div class="card-nome">Jogo de Panelas Tramontina 5 Peças</div><div class="card-preco">45.000 Kz <small>/ conjunto</small></div><a class="btn-wa" href="https://wa.me/244950409704?text=Quero%20encomendar%20Jogo%20Panelas%20Tramontina%205pcs" target="_blank"><i class="fab fa-whatsapp"></i> Encomendar</a></div></div>
+<div class="card" data-cat="tram" data-name="Set Talheres 24 Peças" data-price="28.000 Kz" data-desc="Talheres em aço inox com acabamento polido espelhado." data-specs='[["Peças","24 unidades"],["Material","Aço Inox 18/10"],["Acabamento","Polido espelhado"],["Marca","Tramontina"],["Origem","Brasil"]]'><div class="card-img tram"><img src="https://logospng.org/wp-content/uploads/tramontina.png" alt=""><span class="badge tram-badge">Tramontina</span></div><div class="card-body"><div class="card-nome">Set Talheres Profissional 24 Peças</div><div class="card-preco">28.000 Kz <small>/ conjunto</small></div><a class="btn-wa" href="https://wa.me/244950409704?text=Quero%20encomendar%20Set%20Talheres%20Tramontina%2024pcs" target="_blank"><i class="fab fa-whatsapp"></i> Encomendar</a></div></div>
+<div class="card" data-cat="tram" data-name="Frigideira Antiaderente 28 cm" data-price="12.800 Kz" data-desc="Frigideira em alumínio com revestimento antiaderente Starflon." data-specs='[["Material","Alumínio antiaderente"],["Diâmetro","28 cm"],["Compatibilidade","Gás, eléctrico"],["Marca","Tramontina"],["Origem","Brasil"]]'><div class="card-img tram"><img src="https://logospng.org/wp-content/uploads/tramontina.png" alt=""><span class="badge tram-badge">Tramontina</span></div><div class="card-body"><div class="card-nome">Frigideira Antiaderente 28 cm</div><div class="card-preco">12.800 Kz <small>/ unidade</small></div><a class="btn-wa" href="https://wa.me/244950409704?text=Quero%20encomendar%20Frigideira%20Tramontina%2028cm" target="_blank"><i class="fab fa-whatsapp"></i> Encomendar</a></div></div>
+<div class="card" data-cat="tram" data-name="Faca Chef Profissional" data-price="8.500 Kz" data-desc="Faca chef de lâmina larga em aço inox com cabo antibacteriano." data-specs='[["Lâmina","20 cm"],["Material","Aço Inox"],["Cabo","Policarbonato + fibra"],["Marca","Tramontina"],["Origem","Brasil"]]'><div class="card-img tram"><img src="https://logospng.org/wp-content/uploads/tramontina.png" alt=""><span class="badge tram-badge">Tramontina</span></div><div class="card-body"><div class="card-nome">Faca Chef Profissional Tramontina</div><div class="card-preco">8.500 Kz <small>/ unidade</small></div><a class="btn-wa" href="https://wa.me/244950409704?text=Quero%20encomendar%20Faca%20Chef%20Tramontina" target="_blank"><i class="fab fa-whatsapp"></i> Encomendar</a></div></div>
+<div class="card" data-cat="tram" data-name="Wok Profissional Inox 32 cm" data-price="19.500 Kz" data-desc="Wok em aço inox com fundo triplo, ideal para salteados." data-specs='[["Material","Aço Inox 18/10"],["Diâmetro","32 cm"],["Capacidade","5,0 L"],["Marca","Tramontina"],["Origem","Brasil"]]'><div class="card-img tram"><img src="https://logospng.org/wp-content/uploads/tramontina.png" alt=""><span class="badge tram-badge">Tramontina</span></div><div class="card-body"><div class="card-nome">Wok Profissional Inox 32 cm</div><div class="card-preco">19.500 Kz <small>/ unidade</small></div><a class="btn-wa" href="https://wa.me/244950409704?text=Quero%20encomendar%20Wok%20Tramontina%2032cm" target="_blank"><i class="fab fa-whatsapp"></i> Encomendar</a></div></div>
 </div>
 </div>
 </div>
@@ -140,12 +161,12 @@ body{font-family:'Poppins',sans-serif;background:#f8f9fa;color:#333}
 <div><div class="secao-titulo inuka-titulo">Cosméticos INUKA</div><div class="secao-sub">Always With You — perfumes, skincare e linha Mohlolo</div><div class="secao-divider inuka-divider"></div></div>
 </div>
 <div class="produtos-grid">
-<div class="card" data-cat="inuka"><div class="card-img inuka"><img src="https://inuka.co.za/wp-content/uploads/2021/10/Website-LOGO.png" alt=""><span class="badge inuka-badge">INUKA</span></div><div class="card-body"><div class="card-nome">Perfume INUKA Feminino 30 ml</div><div class="card-preco">8.500 Kz <small>/ unidade</small></div><a class="btn-wa" href="https://wa.me/244950409704?text=Quero%20encomendar%20Perfume%20INUKA%20Feminino%2030ml" target="_blank"><i class="fab fa-whatsapp"></i> Encomendar</a></div></div>
-<div class="card" data-cat="inuka"><div class="card-img inuka"><img src="https://inuka.co.za/wp-content/uploads/2021/10/Website-LOGO.png" alt=""><span class="badge inuka-badge">INUKA</span></div><div class="card-body"><div class="card-nome">Linha Mohlolo — Shampoo Cabelos Naturais</div><div class="card-preco">5.200 Kz <small>/ unidade</small></div><a class="btn-wa" href="https://wa.me/244950409704?text=Quero%20encomendar%20Shampoo%20Mohlolo%20INUKA" target="_blank"><i class="fab fa-whatsapp"></i> Encomendar</a></div></div>
-<div class="card" data-cat="inuka"><div class="card-img inuka"><img src="https://inuka.co.za/wp-content/uploads/2021/10/Website-LOGO.png" alt=""><span class="badge inuka-badge">INUKA</span></div><div class="card-body"><div class="card-nome">Kit Skincare INUKA — Cuidado Completo</div><div class="card-preco">18.000 Kz <small>/ kit</small></div><a class="btn-wa" href="https://wa.me/244950409704?text=Quero%20encomendar%20Kit%20Skincare%20INUKA" target="_blank"><i class="fab fa-whatsapp"></i> Encomendar</a></div></div>
-<div class="card" data-cat="inuka"><div class="card-img inuka"><img src="https://inuka.co.za/wp-content/uploads/2021/10/Website-LOGO.png" alt=""><span class="badge inuka-badge">INUKA</span></div><div class="card-body"><div class="card-nome">Perfume INUKA Masculino 30 ml</div><div class="card-preco">8.500 Kz <small>/ unidade</small></div><a class="btn-wa" href="https://wa.me/244950409704?text=Quero%20encomendar%20Perfume%20INUKA%20Masculino%2030ml" target="_blank"><i class="fab fa-whatsapp"></i> Encomendar</a></div></div>
-<div class="card" data-cat="inuka"><div class="card-img inuka"><img src="https://inuka.co.za/wp-content/uploads/2021/10/Website-LOGO.png" alt=""><span class="badge inuka-badge">INUKA</span></div><div class="card-body"><div class="card-nome">Body Lotion INUKA Hidratante 200 ml</div><div class="card-preco">6.800 Kz <small>/ unidade</small></div><a class="btn-wa" href="https://wa.me/244950409704?text=Quero%20encomendar%20Body%20Lotion%20INUKA%20200ml" target="_blank"><i class="fab fa-whatsapp"></i> Encomendar</a></div></div>
-<div class="card" data-cat="inuka"><div class="card-img inuka"><img src="https://inuka.co.za/wp-content/uploads/2021/10/Website-LOGO.png" alt=""><span class="badge inuka-badge">INUKA</span></div><div class="card-body"><div class="card-nome">Óleo Milagroso Mohlolo INUKA</div><div class="card-preco">7.200 Kz <small>/ unidade</small></div><a class="btn-wa" href="https://wa.me/244950409704?text=Quero%20encomendar%20Oleo%20Milagroso%20INUKA" target="_blank"><i class="fab fa-whatsapp"></i> Encomendar</a></div></div>
+<div class="card" data-cat="inuka" data-name="Perfume INUKA Feminino 30 ml" data-price="8.500 Kz" data-desc="Fragrância feminina com notas florais e amadeiradas." data-specs='[["Volume","30 ml"],["Gênero","Feminino"],["Família","Floral oriental"],["Duração","6 a 8 h"],["Origem","África do Sul"],["Marca","INUKA"]]'><div class="card-img inuka"><img src="https://inuka.co.za/wp-content/uploads/2021/10/Website-LOGO.png" alt=""><span class="badge inuka-badge">INUKA</span></div><div class="card-body"><div class="card-nome">Perfume INUKA Feminino 30 ml</div><div class="card-preco">8.500 Kz <small>/ unidade</small></div><a class="btn-wa" href="https://wa.me/244950409704?text=Quero%20encomendar%20Perfume%20INUKA%20Feminino%2030ml" target="_blank"><i class="fab fa-whatsapp"></i> Encomendar</a></div></div>
+<div class="card" data-cat="inuka" data-name="Shampoo Mohlolo Cabelos Naturais" data-price="5.200 Kz" data-desc="Shampoo para cabelos naturais. Hidrata e protege." data-specs='[["Linha","Mohlolo"],["Volume","250 ml"],["Tipo","Natural, crespo, cacheado"],["Origem","África do Sul"],["Marca","INUKA"]]'><div class="card-img inuka"><img src="https://inuka.co.za/wp-content/uploads/2021/10/Website-LOGO.png" alt=""><span class="badge inuka-badge">INUKA</span></div><div class="card-body"><div class="card-nome">Linha Mohlolo — Shampoo Cabelos Naturais</div><div class="card-preco">5.200 Kz <small>/ unidade</small></div><a class="btn-wa" href="https://wa.me/244950409704?text=Quero%20encomendar%20Shampoo%20Mohlolo%20INUKA" target="_blank"><i class="fab fa-whatsapp"></i> Encomendar</a></div></div>
+<div class="card" data-cat="inuka" data-name="Kit Skincare INUKA Completo" data-price="18.000 Kz" data-desc="Kit com limpador, tónico, sérum e hidratante." data-specs='[["Conteúdo","Limpador + Tónico + Sérum + Hidratante"],["Rotina","Dia e noite"],["Origem","África do Sul"],["Marca","INUKA"]]'><div class="card-img inuka"><img src="https://inuka.co.za/wp-content/uploads/2021/10/Website-LOGO.png" alt=""><span class="badge inuka-badge">INUKA</span></div><div class="card-body"><div class="card-nome">Kit Skincare INUKA — Cuidado Completo</div><div class="card-preco">18.000 Kz <small>/ kit</small></div><a class="btn-wa" href="https://wa.me/244950409704?text=Quero%20encomendar%20Kit%20Skincare%20INUKA" target="_blank"><i class="fab fa-whatsapp"></i> Encomendar</a></div></div>
+<div class="card" data-cat="inuka" data-name="Perfume INUKA Masculino 30 ml" data-price="8.500 Kz" data-desc="Fragrância masculina com notas amadeiradas e especiarias." data-specs='[["Volume","30 ml"],["Gênero","Masculino"],["Família","Amadeirada especiada"],["Duração","7 a 9 h"],["Origem","África do Sul"],["Marca","INUKA"]]'><div class="card-img inuka"><img src="https://inuka.co.za/wp-content/uploads/2021/10/Website-LOGO.png" alt=""><span class="badge inuka-badge">INUKA</span></div><div class="card-body"><div class="card-nome">Perfume INUKA Masculino 30 ml</div><div class="card-preco">8.500 Kz <small>/ unidade</small></div><a class="btn-wa" href="https://wa.me/244950409704?text=Quero%20encomendar%20Perfume%20INUKA%20Masculino%2030ml" target="_blank"><i class="fab fa-whatsapp"></i> Encomendar</a></div></div>
+<div class="card" data-cat="inuka" data-name="Body Lotion INUKA 200 ml" data-price="6.800 Kz" data-desc="Loção hidratante com absorção rápida." data-specs='[["Volume","200 ml"],["Benefícios","Hidratação 24h"],["Origem","África do Sul"],["Marca","INUKA"]]'><div class="card-img inuka"><img src="https://inuka.co.za/wp-content/uploads/2021/10/Website-LOGO.png" alt=""><span class="badge inuka-badge">INUKA</span></div><div class="card-body"><div class="card-nome">Body Lotion INUKA Hidratante 200 ml</div><div class="card-preco">6.800 Kz <small>/ unidade</small></div><a class="btn-wa" href="https://wa.me/244950409704?text=Quero%20encomendar%20Body%20Lotion%20INUKA%20200ml" target="_blank"><i class="fab fa-whatsapp"></i> Encomendar</a></div></div>
+<div class="card" data-cat="inuka" data-name="Óleo Milagroso Mohlolo INUKA" data-price="7.200 Kz" data-desc="Óleo multiúsos para cabelo, pele e barba." data-specs='[["Volume","100 ml"],["Uso","Cabelo, pele, barba"],["Benefícios","Nutrição profunda"],["Origem","África do Sul"],["Marca","INUKA"]]'><div class="card-img inuka"><img src="https://inuka.co.za/wp-content/uploads/2021/10/Website-LOGO.png" alt=""><span class="badge inuka-badge">INUKA</span></div><div class="card-body"><div class="card-nome">Óleo Milagroso Mohlolo INUKA</div><div class="card-preco">7.200 Kz <small>/ unidade</small></div><a class="btn-wa" href="https://wa.me/244950409704?text=Quero%20encomendar%20Oleo%20Milagroso%20INUKA" target="_blank"><i class="fab fa-whatsapp"></i> Encomendar</a></div></div>
 </div>
 </div>
 </div>
@@ -154,10 +175,10 @@ body{font-family:'Poppins',sans-serif;background:#f8f9fa;color:#333}
 <div class="vantagens-inner">
 <div class="vantagens-titulo">Porquê escolher a Grutur?</div>
 <div class="vantagens-grid">
-<div class="vantagem"><div class="vantagem-icon">&#127775;</div><h4>Produtos Originais</h4><p>100% autênticos, importados directamente dos fabricantes oficiais.</p></div>
-<div class="vantagem"><div class="vantagem-icon">&#128666;</div><h4>Entrega em Luanda</h4><p>Entregamos no seu endereço com rapidez e segurança.</p></div>
-<div class="vantagem"><div class="vantagem-icon">&#129303;</div><h4>Suporte via WhatsApp</h4><p>Atendimento personalizado. Tire dúvidas antes de encomendar.</p></div>
-<div class="vantagem"><div class="vantagem-icon">&#127881;</div><h4>Distribuidores Oficiais</h4><p>Tramontina e INUKA certificados em Angola desde 2020.</p></div>
+<div class="vantagem"><div class="vantagem-icon">&#127775;</div><h4>Produtos Originais</h4><p>100% autênticos, importados directamente dos fabricantes.</p></div>
+<div class="vantagem"><div class="vantagem-icon">&#128666;</div><h4>Entrega em Luanda</h4><p>Entregas rápidas e seguras no seu endereço.</p></div>
+<div class="vantagem"><div class="vantagem-icon">&#129303;</div><h4>Suporte WhatsApp</h4><p>Atendimento personalizado. Tire dúvidas antes de encomendar.</p></div>
+<div class="vantagem"><div class="vantagem-icon">&#127881;</div><h4>Distribuidores Oficiais</h4><p>Tramontina e INUKA certificados em Angola.</p></div>
 </div>
 </div>
 </section>
@@ -177,16 +198,77 @@ body{font-family:'Poppins',sans-serif;background:#f8f9fa;color:#333}
 
 <a href="https://wa.me/244950409704" class="wa-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
 
+<!-- ===== MODAL DE PRODUTO ===== -->
+<div class="product-modal-overlay" id="productModal">
+  <div class="product-modal" role="dialog" aria-modal="true">
+    <div class="product-modal-img">
+      <span class="product-modal-cat" id="pmCat"></span>
+      <img id="pmImg" src="" alt="">
+      <button class="product-modal-close" onclick="closeProductModal()" aria-label="Fechar">&times;</button>
+    </div>
+    <div class="product-modal-body">
+      <h2 class="product-modal-name" id="pmName"></h2>
+      <div class="product-modal-price" id="pmPrice"></div>
+      <p class="product-modal-desc" id="pmDesc"></p>
+      <div class="product-modal-specs">
+        <h4>Especificações Técnicas</h4>
+        <ul id="pmSpecs"></ul>
+      </div>
+      <a class="btn-wa" id="pmWa" href="#" target="_blank"><i class="fab fa-whatsapp"></i> Encomendar via WhatsApp</a>
+    </div>
+  </div>
+</div>
+
 <script>
 function filtrar(cat,btn){
-document.querySelectorAll('.filtro').forEach(b=>b.classList.remove('active'));
-btn.classList.add('active');
-var t=document.getElementById('sec-tram');
-var i=document.getElementById('sec-inuka');
-if(cat==='todos'){t.style.display='';i.style.display='';}
-else if(cat==='tram'){t.style.display='';i.style.display='none';}
-else if(cat==='inuka'){t.style.display='none';i.style.display='';}
+  document.querySelectorAll('.filtro').forEach(function(b){b.classList.remove('active');});
+  btn.classList.add('active');
+  var t=document.getElementById('sec-tram');
+  var i=document.getElementById('sec-inuka');
+  if(cat==='todos'){t.style.display='';i.style.display='';}
+  else if(cat==='tram'){t.style.display='';i.style.display='none';}
+  else if(cat==='inuka'){t.style.display='none';i.style.display='';}
 }
+
+/* ===== MODAL DE PRODUTO ===== */
+function openProductModal(card){
+  var cat=card.dataset.cat;
+  var name=card.dataset.name||(card.querySelector('.card-nome')?card.querySelector('.card-nome').textContent.trim():'');
+  var price=card.dataset.price||(card.querySelector('.card-preco')?card.querySelector('.card-preco').textContent.trim():'');
+  var desc=card.dataset.desc||'Produto de qualidade premium disponível para entrega em Luanda.';
+  var specs=[];
+  try{specs=JSON.parse(card.dataset.specs||'[]');}catch(e){specs=[];}
+  var imgEl=card.querySelector('.card-img img');
+  var imgSrc=card.dataset.img||(imgEl?imgEl.src:'');
+  var catLabel=cat==='tram'?'Tramontina':cat==='inuka'?'INUKA':'Produto';
+
+  document.getElementById('pmCat').textContent=catLabel;
+  document.getElementById('pmName').textContent=name;
+  document.getElementById('pmPrice').textContent=price;
+  document.getElementById('pmDesc').textContent=desc;
+  document.getElementById('pmImg').src=imgSrc;
+  document.getElementById('pmImg').alt=name;
+  document.getElementById('pmSpecs').innerHTML=specs.length
+    ? specs.map(function(s){return '<li><strong>'+s[0]+':</strong><span>'+s[1]+'</span></li>';}).join('')
+    : '<li>Consulte-nos para mais detalhes.</li>';
+  var msg=encodeURIComponent('Olá! Tenho interesse no produto: '+name+' ('+price+'). Pode dar-me mais informações?');
+  document.getElementById('pmWa').href='https://wa.me/244950409704?text='+msg;
+  document.getElementById('productModal').classList.add('active');
+  document.body.style.overflow='hidden';
+}
+function closeProductModal(){
+  document.getElementById('productModal').classList.remove('active');
+  document.body.style.overflow='';
+}
+document.getElementById('productModal').addEventListener('click',function(e){if(e.target.id==='productModal') closeProductModal();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape') closeProductModal();});
+document.querySelectorAll('.card').forEach(function(card){
+  card.addEventListener('click',function(e){
+    if(e.target.closest('.btn-wa')) return;
+    openProductModal(card);
+  });
+});
 </script>
+
 </body>
 </html>
